@@ -1,8 +1,8 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
@@ -10,44 +10,53 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-syne)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-jetbrains)', 'monospace'],
+        display: ['var(--font-display)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
-        brand: {
-          purple: '#7c3aed',
-          violet: '#8b5cf6',
-          blue: '#2563eb',
-          cyan: '#06b6d4',
-          amber: '#f59e0b',
-        },
+        canvas: 'rgb(var(--canvas) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        raised: 'rgb(var(--raised) / <alpha-value>)',
+        line: 'rgb(var(--line) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        faint: 'rgb(var(--faint) / <alpha-value>)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
+        'accent-soft': 'rgb(var(--accent-soft) / <alpha-value>)',
+        positive: 'rgb(var(--positive) / <alpha-value>)',
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'mesh-gradient': `
-          radial-gradient(at 40% 20%, hsla(280,80%,30%,0.6) 0px, transparent 50%),
-          radial-gradient(at 80% 0%, hsla(220,80%,30%,0.5) 0px, transparent 50%),
-          radial-gradient(at 0% 50%, hsla(260,70%,25%,0.4) 0px, transparent 50%),
-          radial-gradient(at 80% 50%, hsla(200,80%,20%,0.4) 0px, transparent 50%),
-          radial-gradient(at 0% 100%, hsla(300,60%,20%,0.3) 0px, transparent 50%)
-        `,
+      borderRadius: {
+        card: '20px',
+        pill: '999px',
       },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 8s linear infinite',
-        'gradient-shift': 'gradientShift 8s ease infinite',
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        lift: 'var(--shadow-lift)',
+        pop: 'var(--shadow-pop)',
+      },
+      maxWidth: {
+        shell: '1180px',
+      },
+      letterSpacing: {
+        tightest: '-0.045em',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(10px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
-        gradientShift: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+        'scale-in': {
+          from: { opacity: '0', transform: 'scale(0.97)' },
+          to: { opacity: '1', transform: 'scale(1)' },
         },
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'scale-in': 'scale-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) both',
+        shimmer: 'shimmer 1.6s infinite',
       },
     },
   },

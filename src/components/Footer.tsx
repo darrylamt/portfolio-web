@@ -1,46 +1,64 @@
-import { Github, Twitter, Mail } from 'lucide-react'
+import Link from 'next/link'
+import { Github, Mail, Twitter } from 'lucide-react'
 import { profile } from '@/lib/data'
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="border-t border-white/5 py-10">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <span className="font-display font-bold text-white">DA</span>
-          <span className="text-gradient font-bold">.</span>
-          <span className="text-[#8888aa] text-sm ml-2">
-            © {year} Darryl Amoatey. Built with Next.js &amp; Tailwind.
-          </span>
+    <footer className="border-t border-line bg-raised/40">
+      <div className="shell flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className="h-display text-[18px]">{profile.name}</p>
+          <p className="mt-1.5 max-w-xs text-[14px] text-muted">
+            {profile.title} in {profile.location}. Building for the web, shipping to production.
+          </p>
+          <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
+            © {new Date().getFullYear()} · Built with Next.js and Tailwind
+          </p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#8888aa] hover:text-white transition-colors"
-            aria-label="GitHub"
-          >
-            <Github size={17} />
-          </a>
-          <a
-            href={profile.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#8888aa] hover:text-sky-400 transition-colors"
-            aria-label="Twitter"
-          >
-            <Twitter size={17} />
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="text-[#8888aa] hover:text-amber-400 transition-colors"
-            aria-label="Email"
-          >
-            <Mail size={17} />
-          </a>
+        <div className="flex flex-col gap-6 sm:flex-row sm:gap-14">
+          <nav aria-label="Footer" className="flex flex-col gap-2.5 text-[14px]">
+            <Link href="/work" className="text-muted transition-colors hover:text-ink">
+              Work
+            </Link>
+            <Link href="/#stack" className="text-muted transition-colors hover:text-ink">
+              Stack
+            </Link>
+            <Link href="/#experience" className="text-muted transition-colors hover:text-ink">
+              Experience
+            </Link>
+            <Link href="/#colophon" className="text-muted transition-colors hover:text-ink">
+              How this site works
+            </Link>
+          </nav>
+
+          <div className="flex gap-2">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+            >
+              <Github size={16} />
+            </a>
+            <a
+              href={profile.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+            >
+              <Twitter size={16} />
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              aria-label="Email"
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+            >
+              <Mail size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
