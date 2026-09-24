@@ -2,7 +2,7 @@ export const site = {
   url: 'https://darrylamt.vercel.app',
   name: 'Darryl Amoatey',
   role: 'Full-stack developer',
-  shortBio: 'Full-stack developer in Accra shipping production web apps for auctions, sport and property.',
+  shortBio: 'Full-stack developer in Accra shipping production web and iOS products for auctions, sport, government and property.',
 }
 
 export const profile = {
@@ -12,7 +12,7 @@ export const profile = {
   available: true,
   tagline: 'I build products people in Ghana actually use.',
   intro:
-    'Full-stack developer and Acting Head of IT at the Small Arms Commission of Ghana. I design and ship end-to-end products, from an online auction marketplace on its own domain to a federation match platform and a Supabase-backed agency back office.',
+    'Full-stack developer and Acting Head of IT at the Small Arms Commission of Ghana. I design and ship end-to-end products, from an online auction marketplace on its own domain to the platform behind a national sports federation, and an evening planner that runs on the web and in TestFlight.',
   email: 'amoateydarryl4@gmail.com',
   github: 'https://github.com/darrylamt',
   githubUser: 'darrylamt',
@@ -26,13 +26,16 @@ export type Project = {
   slug: string
   name: string
   tagline: string
-  category: 'Marketplace' | 'Platform' | 'Product' | 'Client site' | 'Internal tool'
+  category: 'Marketplace' | 'Platform' | 'Product' | 'Client site'
   year: string
   role: string
+  contributed: boolean
   status: ProjectStatus
   live: string | null
   liveLabel: string | null
   github: string | null
+  githubPrivate?: boolean
+  testflight?: string
   stack: string[]
   summary: string
   body: string[]
@@ -49,6 +52,7 @@ export const projects: Project[] = [
     category: 'Marketplace',
     year: '2026',
     role: 'Design and build, end to end',
+    contributed: false,
     status: 'live',
     live: 'https://gavelgh.com',
     liveLabel: 'gavelgh.com',
@@ -71,23 +75,24 @@ export const projects: Project[] = [
     cover: { from: '#1F2937', to: '#0B1220', mark: 'GV' },
   },
   {
-    slug: 'rlfg',
-    name: 'RLFG',
-    tagline: 'Rugby League Federation Ghana platform',
+    slug: 'rlfg-platform',
+    name: 'RLFG Platform',
+    tagline: 'Match centre and records for the federation',
     category: 'Platform',
     year: '2026',
     role: 'Full-stack developer',
+    contributed: false,
     status: 'live',
     live: 'https://rl-db.vercel.app',
     liveLabel: 'rl-db.vercel.app',
     github: 'https://github.com/darrylamt/rl_db',
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
     summary:
-      'The official management platform for the Rugby League Federation Ghana, with a live match centre as the landing surface.',
+      'The management platform behind the Rugby League Federation Ghana, with the live match centre as its landing surface.',
     body: [
-      'RLFG is the federation’s management platform: squads, fixtures and results held in one place instead of scattered spreadsheets and group chats.',
+      'The platform holds what the federation runs on: squads, fixtures and results in one schema instead of scattered spreadsheets and group chats.',
       'The root route redirects straight into the live match centre, so the first thing anyone sees is what is happening right now rather than a marketing page they have to click past.',
-      'It is a Next.js App Router build on a Postgres store, prerendered where the data allows and revalidated where it does not.',
+      'A Next.js App Router build on Postgres, prerendered where the data allows and revalidated where it does not. It is the data side of the same federation the public site serves.',
     ],
     highlights: [
       { label: 'Live-first routing', detail: 'The landing route resolves to the match centre.' },
@@ -98,88 +103,90 @@ export const projects: Project[] = [
     cover: { from: '#123A2E', to: '#06170F', mark: 'RL' },
   },
   {
+    slug: 'rl-ghana',
+    name: 'RL Ghana',
+    tagline: 'Public home of the Rugby League Federation',
+    category: 'Client site',
+    year: '2026',
+    role: 'Contributor',
+    contributed: true,
+    status: 'live',
+    live: 'https://rlghana.com',
+    liveLabel: 'rlghana.com',
+    github: 'https://github.com/velocitysportslabs/rlfgweb',
+    githubPrivate: true,
+    stack: ['Nuxt 3', 'Vue', 'TypeScript', 'Tailwind CSS', 'Pinia'],
+    summary:
+      'The federation’s public site: fixtures, results, standings and stats alongside clubs, governance, media and history.',
+    body: [
+      'rlghana.com is the outward face of Rugby League Ghana. Where the platform holds the records, this is where supporters, press and partners read them: fixtures and results, standings and stats, club and player pages, competitions, news and press.',
+      'It is a Nuxt 3 build in Vue rather than React, with a shadcn-vue component layer on Tailwind and Pinia holding shared state. Club, board, committee, competition and partner records come out of structured data files, so an update is a data change and not a template edit.',
+      'Server routes proxy the federation’s YouTube channel into a media section, keeping the API key server-side. I contributed to the build rather than owning it.',
+    ],
+    highlights: [
+      { label: 'Full competition surface', detail: 'Fixtures, results, standings and stats across 16 clubs.' },
+      { label: 'Governance in the open', detail: 'Board, committee, history and reports as first-class pages.' },
+      { label: 'Server-side media', detail: 'YouTube playlists proxied through Nuxt server routes.' },
+      { label: 'Vue, not React', detail: 'Nuxt 3 with shadcn-vue and Pinia, on a Tailwind base.' },
+    ],
+    featured: false,
+    cover: { from: '#1B3B5F', to: '#081826', mark: 'RG' },
+  },
+  {
+    slug: 'small-arms-commission',
+    name: 'Small Arms Commission',
+    tagline: 'Public site for the commission I run IT for',
+    category: 'Client site',
+    year: '2025',
+    role: 'Contributor, in-house IT',
+    contributed: true,
+    status: 'live',
+    live: 'https://smallarmscommission.gov.gh',
+    liveLabel: 'smallarmscommission.gov.gh',
+    github: null,
+    stack: ['WordPress', 'PHP'],
+    summary:
+      'The public web presence of the National Commission on Small Arms and Light Weapons, Ghana, contributed to from inside the commission’s IT function.',
+    body: [
+      'Not every job calls for a framework. The commission needed a public site its own people could keep current on a government domain, so it runs on WordPress and content changes do not wait on a deploy or a developer.',
+      'I contributed to it as part of the in-house IT function I lead, which is the other half of this job: the web work sits next to systems administration, networks and the infrastructure the commission runs on.',
+    ],
+    highlights: [
+      { label: 'Government domain', detail: 'Live on gov.gh, serving the commission’s public information.' },
+      { label: 'Edited without a deploy', detail: 'WordPress, so staff publish changes themselves.' },
+    ],
+    featured: false,
+    cover: { from: '#3A4046', to: '#14171A', mark: 'SA' },
+  },
+  {
     slug: 'aduro',
     name: 'aduro',
     tagline: 'A date planned with intention, Accra first',
     category: 'Product',
     year: '2026',
     role: 'Product design and build',
+    contributed: false,
     status: 'live',
     live: 'https://date-plannergh.vercel.app',
     liveLabel: 'date-plannergh.vercel.app',
     github: 'https://github.com/darrylamt/date-planner',
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Auth'],
+    testflight: 'https://testflight.apple.com/join/VW3ujCKf',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'iOS', 'TestFlight'],
     summary:
-      'Answer six questions about budget, vibe and the person, and aduro builds a back-to-back evening in Accra with real venues, real menus and real prices.',
+      'Answer six questions about budget, vibe and the person, and aduro builds a back-to-back evening in Accra with real venues, real menus and real prices. On the web and in TestFlight.',
     body: [
       'aduro turns a vague intention into a plan. You give it a budget, a vibe and a little about the person you are planning for, and it returns a sequenced evening across Accra with the costs visible before you leave the house.',
       'The whole product is mobile-first by construction: a 560px column that opens up to a two-column layout on desktop, priority-loaded hero imagery, and a saved-plans area behind auth so a plan survives the walk to the car.',
-      'It has its own visual language, warm and typographic, built on a small token set rather than a component library.',
+      'It runs as a web app and as an iOS build distributed through TestFlight, so the same product is one tap from the home screen on the device people actually plan dates on.',
     ],
     highlights: [
       { label: 'Six questions in', detail: 'A complete itinerary out, no blank-page problem.' },
       { label: 'Prices up front', detail: 'Menus and costs shown before you commit to the evening.' },
+      { label: 'Shipping on iOS', detail: 'Beta builds distributed through TestFlight.' },
       { label: 'Saved plans', detail: 'Authenticated users keep their itineraries.' },
-      { label: 'Mobile-first', detail: 'Designed at 560px, expanded to desktop after.' },
     ],
     featured: true,
     cover: { from: '#7A2338', to: '#2A0D16', mark: 'ad' },
-  },
-  {
-    slug: 'amin-sports',
-    name: 'Amin Sports',
-    tagline: 'Player representation back office',
-    category: 'Internal tool',
-    year: '2026',
-    role: 'Full-stack developer',
-    status: 'live',
-    live: 'https://playermgt.vercel.app',
-    liveLabel: 'playermgt.vercel.app',
-    github: null,
-    stack: ['Next.js', 'Supabase', 'PostgreSQL', 'TypeScript', 'Tailwind CSS'],
-    summary:
-      'A dark, dense admin surface for a football agency: roster, clubs, medical records, valuations and deal flow, reading live rows from Supabase.',
-    body: [
-      'Amin Sports is the operational back office for a player representation agency. Six sections cover the roster, clubs, medical history, market valuations, deals and record management.',
-      'Every screen reads live from Supabase, including agency branding and logo assets served from storage, so the deployment is configuration rather than a rebuild.',
-      'The interface is deliberately dense and quiet: a sticky sidebar, a search that spans players, clubs and positions, alert badges, and empty states that tell an admin exactly what to create first.',
-    ],
-    highlights: [
-      { label: 'Live Supabase reads', detail: 'Dashboard edits show on the next page load.' },
-      { label: 'Six record domains', detail: 'Players, clubs, medical, market, deals, admin.' },
-      { label: 'Guided empty states', detail: 'Club before player, enforced in the UI copy.' },
-      { label: 'Multi-tenant ready', detail: 'Agency name, currency and locale are data, not code.' },
-    ],
-    featured: false,
-    cover: { from: '#27272A', to: '#0A0A0B', mark: 'AS' },
-  },
-  {
-    slug: 'ghana-fantasy-football',
-    name: 'Ghana Fantasy Football',
-    tagline: 'Fantasy football for the Ghana Premier League',
-    category: 'Platform',
-    year: '2026',
-    role: 'Full-stack developer',
-    status: 'live',
-    live: 'https://football-fantasy-two.vercel.app',
-    liveLabel: 'football-fantasy-two.vercel.app',
-    github: 'https://github.com/darrylamt/football-fantasy',
-    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Auth'],
-    summary:
-      'A full fantasy game for the local league: a 15-player squad under a 100.0m budget, gameweek scoring, captaincy and private leagues.',
-    body: [
-      'GFF gives the Ghana Premier League the format that the English game has had for years. Managers build a 15-player squad inside a budget, score across each gameweek on goals, assists, clean sheets and bonus, and double up through the captain.',
-      'Accounts, private leagues and overall rankings run on an authenticated Postgres backend, with an admin surface behind the same auth for players, fixtures and match data entry.',
-      'The interface borrows the clarity of the format it is modelled on without borrowing its assets, built with route groups splitting the auth shell from the game itself.',
-    ],
-    highlights: [
-      { label: 'Squad and budget rules', detail: '15 players, 100.0m cap, enforced server-side.' },
-      { label: 'Gameweek scoring engine', detail: 'Goals, assists, clean sheets, bonus, captain multiplier.' },
-      { label: 'Private leagues', detail: 'Overall rankings plus invite-only mini leagues.' },
-      { label: 'Admin data entry', detail: 'Fixtures and match data managed in-app.' },
-    ],
-    featured: false,
-    cover: { from: '#37003C', to: '#12001A', mark: 'GF' },
   },
   {
     slug: 'mg-reliance',
@@ -188,6 +195,7 @@ export const projects: Project[] = [
     category: 'Client site',
     year: '2026',
     role: 'Design and build',
+    contributed: false,
     status: 'live',
     live: 'https://mgrelianceproperties.com',
     liveLabel: 'mgrelianceproperties.com',
@@ -206,31 +214,6 @@ export const projects: Project[] = [
     ],
     featured: false,
     cover: { from: '#3F3524', to: '#16120B', mark: 'MG' },
-  },
-  {
-    slug: 'geolicrafts',
-    name: 'Geolicrafts',
-    tagline: 'Authentic African craftsmanship',
-    category: 'Client site',
-    year: '2025',
-    role: 'Design and build',
-    status: 'live',
-    live: 'https://geolicrafts.vercel.app',
-    liveLabel: 'geolicrafts.vercel.app',
-    github: 'https://github.com/darrylamt/geolicrafts',
-    stack: ['React', 'Vite', 'JavaScript'],
-    summary:
-      'A storefront for a Ghanaian craft brand, built as a fast Vite single-page app with a product-led layout.',
-    body: [
-      'Geolicrafts presents handmade African craft work to a mostly international audience, so the build optimises for a fast first paint on slow connections.',
-      'A Vite React SPA with code-split routes and static hosting on the edge: no server to keep warm, nothing to maintain between product drops.',
-    ],
-    highlights: [
-      { label: 'Static and fast', detail: 'Vite build served from the edge, cached at HIT.' },
-      { label: 'Product-led layout', detail: 'The craft work leads, the chrome stays out of the way.' },
-    ],
-    featured: false,
-    cover: { from: '#5A3A1E', to: '#1E1309', mark: 'GC' },
   },
 ]
 
@@ -296,7 +279,7 @@ export const experience = [
 
 export const stats = [
   { value: String(projects.filter((p) => p.status === 'live').length), label: 'products live in production' },
-  { value: '2', label: 'running on their own domain' },
-  { value: '3', label: 'years building and shipping' },
+  { value: '4', label: 'running on their own domain' },
+  { value: 'iOS', label: 'beta shipping through TestFlight' },
   { value: 'Accra', label: 'based in Ghana, working anywhere' },
 ]

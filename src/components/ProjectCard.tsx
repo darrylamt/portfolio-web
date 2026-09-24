@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { Apple, ArrowUpRight } from 'lucide-react'
 import type { Project } from '@/lib/data'
 import ProjectCover from './ProjectCover'
 import StatusDot from './StatusDot'
@@ -40,6 +40,16 @@ export default function ProjectCard({
 
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
           <StatusDot status={project.status} />
+          {project.contributed && (
+            <span className="rounded-pill border border-line px-2 py-0.5 text-[11px] font-medium text-muted">
+              Contributed
+            </span>
+          )}
+          {project.testflight && (
+            <span className="inline-flex items-center gap-1 rounded-pill border border-line px-2 py-0.5 text-[11px] font-medium text-muted">
+              <Apple size={10} /> iOS
+            </span>
+          )}
           <span className="text-faint">·</span>
           {project.stack.slice(0, 3).map((tech) => (
             <span key={tech} className="text-[12px] text-muted">

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react'
+import { Apple, ArrowLeft, ArrowRight, ArrowUpRight, Github } from 'lucide-react'
 import ProjectCover from '@/components/ProjectCover'
 import StatusDot from '@/components/StatusDot'
 import { getProject, projects, site } from '@/lib/data'
@@ -38,6 +38,10 @@ export default function ProjectPage({ params }: Params) {
 
   const facts = [
     { label: 'Role', value: project.role },
+    {
+      label: 'Involvement',
+      value: project.contributed ? 'Contributed to an existing build' : 'Built end to end',
+    },
     { label: 'Year', value: project.year },
     { label: 'Type', value: project.category },
     { label: 'Status', value: project.status === 'live' ? 'Live in production' : 'Code only' },
@@ -72,6 +76,12 @@ export default function ProjectPage({ params }: Params) {
           <StatusDot status={project.status} />
           <span className="text-faint">·</span>
           <span className="text-[13px] text-muted">{project.category}</span>
+          {project.contributed && (
+            <>
+              <span className="text-faint">·</span>
+              <span className="text-[13px] text-muted">Contributed</span>
+            </>
+          )}
         </div>
 
         <h1 className="h-display mt-4 text-[40px] leading-[1.03] sm:text-[52px]">{project.name}</h1>
@@ -88,6 +98,16 @@ export default function ProjectPage({ params }: Params) {
               Visit {project.liveLabel} <ArrowUpRight size={15} />
             </a>
           )}
+          {project.testflight && (
+            <a
+              href={project.testflight}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost"
+            >
+              <Apple size={15} /> Get the iOS beta
+            </a>
+          )}
           {project.github && (
             <a
               href={project.github}
@@ -95,7 +115,7 @@ export default function ProjectPage({ params }: Params) {
               rel="noopener noreferrer"
               className="btn-ghost"
             >
-              <Github size={15} /> Source
+              <Github size={15} /> Source{project.githubPrivate ? ' (private repo)' : ''}
             </a>
           )}
         </div>

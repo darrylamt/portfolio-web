@@ -12,6 +12,7 @@ import {
   Mail,
   Moon,
   Search,
+  Smartphone,
   Sun,
 } from 'lucide-react'
 import { profile, projects } from '@/lib/data'
@@ -65,6 +66,17 @@ export default function CommandPalette() {
         icon: <span className="font-mono text-[10px] font-medium text-faint">{p.cover.mark}</span>,
         run: go(`/work/${p.slug}`),
       })),
+      ...projects
+        .filter((p) => p.testflight)
+        .map<Item>((p) => ({
+          id: `t-${p.slug}`,
+          label: `Get ${p.name} on TestFlight`,
+          hint: 'iOS beta',
+          group: 'Live sites',
+          keywords: `ios app iphone testflight ${p.name}`,
+          icon: <Smartphone size={15} />,
+          run: openExternal(p.testflight as string),
+        })),
       ...projects
         .filter((p) => p.live)
         .map<Item>((p) => ({

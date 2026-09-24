@@ -20,8 +20,9 @@ export default function WorkPage() {
           Everything I have shipped
         </h1>
         <p className="mt-4 text-[16px] leading-relaxed text-muted">
-          {live} products currently live, from an auction marketplace on its own domain to a
-          Supabase-backed agency back office. Filter by type or search the stack.
+          {live} products currently live: an auction marketplace, the platform and public site of a
+          national sports federation, a government site, an evening planner on the web and in
+          TestFlight, and a property developer. Filter by type or search the stack.
         </p>
       </header>
 

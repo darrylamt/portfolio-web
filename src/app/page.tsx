@@ -41,9 +41,14 @@ export default function HomePage() {
 
         <div className="mt-16 border-t border-line pt-10">
           <p className="eyebrow mb-6">Also shipped</p>
-          <ul className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
-            {rest.map((project) => (
-              <li key={project.slug} className="bg-surface">
+          <ul className="grid overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-3">
+            {rest.map((project, index) => (
+              <li
+                key={project.slug}
+                className={
+                  index > 0 ? 'border-t border-line sm:border-l sm:border-t-0' : undefined
+                }
+              >
                 <Link
                   href={`/work/${project.slug}`}
                   className="group flex items-center justify-between gap-4 p-5 transition-colors hover:bg-raised"

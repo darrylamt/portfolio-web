@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { Search, X } from 'lucide-react'
-import { projects } from '@/lib/data'
+import { projectCategories, projects } from '@/lib/data'
 import ProjectCard from './ProjectCard'
 
-const filters = ['All', 'Live', 'Marketplace', 'Platform', 'Product', 'Client site', 'Internal tool']
+const filters = ['All', 'Live', 'Contributed', ...projectCategories]
 
 export default function WorkBrowser() {
   const [filter, setFilter] = useState('All')
@@ -32,7 +32,9 @@ export default function WorkBrowser() {
     return projects.filter((project) => {
       const matchesFilter =
         filter === 'All' ||
-        (filter === 'Live' ? project.status === 'live' : project.category === filter)
+        (filter === 'Live' && project.status === 'live') ||
+        (filter === 'Contributed' && project.contributed) ||
+        project.category === filter
       const matchesQuery =
         !q ||
         `${project.name} ${project.tagline} ${project.summary} ${project.stack.join(' ')} ${project.category}`
