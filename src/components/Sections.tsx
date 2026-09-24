@@ -25,9 +25,13 @@ export function SectionHead({
       {action && (
         <Link
           href={action.href}
-          className="inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink underline decoration-line underline-offset-[6px] transition-colors hover:decoration-accent"
+          className="group/action inline-flex items-center gap-1.5 text-[14px] font-semibold text-ink underline decoration-line underline-offset-[6px] transition-colors hover:decoration-accent"
         >
-          {action.label} <ArrowUpRight size={15} />
+          {action.label}
+          <ArrowUpRight
+            size={15}
+            className="transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5"
+          />
         </Link>
       )}
     </div>
@@ -46,7 +50,7 @@ export function StackSection() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stack.map((group, index) => (
           <Reveal key={group.group} delay={index * 0.05}>
-            <div className="card h-full p-5">
+            <div className="card h-full p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-ink/15 hover:shadow-card">
               <p className="text-[14px] font-semibold">{group.group}</p>
               <ul className="mt-4 space-y-2.5">
                 {group.items.map((item) => (
@@ -71,24 +75,32 @@ export function ExperienceSection() {
         <SectionHead eyebrow="Experience" title="Where I have worked" />
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14">
-          <ol className="relative border-l border-line pl-6">
+          <ol className="relative border-l border-line pl-7">
             {experience.map((role, index) => (
-              <Reveal key={role.id} delay={index * 0.06}>
-                <li className="relative pb-9 last:pb-0">
+              <Reveal
+                key={role.id}
+                delay={index * 0.08}
+                className={index < experience.length - 1 ? 'pb-14' : undefined}
+              >
+                <li className="group relative">
                   <span
-                    className={`absolute -left-[29px] top-1.5 size-2.5 rounded-full border-2 border-canvas ${
+                    className={`absolute -left-[33px] top-1.5 grid size-3 place-items-center rounded-full border-2 border-canvas transition-transform duration-300 group-hover:scale-125 ${
                       role.current ? 'bg-positive' : 'bg-faint'
                     }`}
-                  />
+                  >
+                    {role.current && (
+                      <span className="absolute size-3 animate-ping rounded-full bg-positive opacity-50" />
+                    )}
+                  </span>
                   <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
                     {role.period}
                   </p>
-                  <h3 className="mt-2 text-[17px] font-semibold">{role.role}</h3>
-                  <p className="text-[14px] text-muted">{role.company}</p>
-                  <p className="mt-2.5 max-w-lg text-[14px] leading-relaxed text-muted">
+                  <h3 className="mt-2.5 text-[17px] font-semibold">{role.role}</h3>
+                  <p className="mt-0.5 text-[14px] text-muted">{role.company}</p>
+                  <p className="mt-3 max-w-lg text-[14px] leading-relaxed text-muted">
                     {role.description}
                   </p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex flex-wrap gap-1.5">
                     {role.tech.map((tech) => (
                       <span key={tech} className="tag">
                         {tech}
@@ -147,7 +159,10 @@ export function Colophon() {
 
       <div className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {notes.map((note) => (
-          <div key={note.title} className="bg-surface p-6">
+          <div
+            key={note.title}
+            className="bg-surface p-6 transition-colors duration-300 hover:bg-raised/60"
+          >
             <p className="text-[14px] font-semibold">{note.title}</p>
             <p className="mt-2 text-[13px] leading-relaxed text-muted">{note.body}</p>
           </div>

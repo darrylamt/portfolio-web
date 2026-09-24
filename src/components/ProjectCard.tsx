@@ -16,7 +16,7 @@ export default function ProjectCard({
       <Link href={`/work/${project.slug}`} className="block focus-visible:outline-none">
         <ProjectCover
           project={project}
-          className={`w-full transition-transform duration-500 ease-out group-hover:scale-[1.012] ${
+          className={`w-full shadow-card transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-lift ${
             size === 'large' ? 'aspect-[16/10]' : 'aspect-[4/3]'
           }`}
           markClassName={size === 'large' ? 'text-[88px]' : 'text-[56px]'}
@@ -25,7 +25,7 @@ export default function ProjectCard({
         <div className="mt-4 flex items-start justify-between gap-4">
           <div className="min-w-0">
             <h3
-              className={`h-display leading-tight ${
+              className={`h-display leading-tight transition-colors duration-200 group-hover:text-accent ${
                 size === 'large' ? 'text-[22px]' : 'text-[18px]'
               }`}
             >

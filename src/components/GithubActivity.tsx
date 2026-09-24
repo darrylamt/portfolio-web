@@ -77,7 +77,7 @@ export default function GithubActivity() {
         {items?.map((item) => (
           <li
             key={item.id}
-            className="flex items-center justify-between gap-4 px-5 py-3.5 text-[13px]"
+            className="flex items-center justify-between gap-4 px-5 py-3.5 text-[13px] transition-colors duration-200 hover:bg-raised/60"
           >
             <span className="min-w-0 truncate text-muted">
               {item.verb}{' '}

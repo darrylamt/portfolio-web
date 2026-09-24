@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@darrylamt',
+    creator: profile.xHandle,
     title: `${profile.name} — ${profile.title}`,
     description: site.shortBio,
   },
@@ -94,7 +94,7 @@ const personLd = {
   jobTitle: profile.title,
   email: `mailto:${profile.email}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Accra', addressCountry: 'GH' },
-  sameAs: [profile.github, profile.twitter],
+  sameAs: [profile.github, profile.x],
   knowsAbout: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'Supabase', 'Tailwind CSS'],
 }
 

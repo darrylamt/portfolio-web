@@ -31,9 +31,11 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-      className={`grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink ${className}`}
+      className={`grid size-9 place-items-center overflow-hidden rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink ${className}`}
     >
-      {mounted && theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+      <span key={mounted && theme === 'dark' ? 'sun' : 'moon'} className="animate-scale-in">
+        {mounted && theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+      </span>
     </button>
   )
 }

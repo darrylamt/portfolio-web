@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { Github, Mail, Twitter } from 'lucide-react'
+import { Github, Mail } from 'lucide-react'
 import { profile } from '@/lib/data'
+import XIcon from './XIcon'
 
 export default function Footer() {
   return (
@@ -38,23 +39,23 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-all duration-200 hover:-translate-y-0.5 hover:text-ink hover:shadow-card"
             >
               <Github size={16} />
             </a>
             <a
-              href={profile.twitter}
+              href={profile.x}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
-              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+              aria-label={`${profile.xHandle} on X`}
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-all duration-200 hover:-translate-y-0.5 hover:text-ink hover:shadow-card"
             >
-              <Twitter size={16} />
+              <XIcon size={14} />
             </a>
             <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
-              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-colors hover:text-ink"
+              className="grid size-9 place-items-center rounded-pill border border-line bg-surface text-muted transition-all duration-200 hover:-translate-y-0.5 hover:text-ink hover:shadow-card"
             >
               <Mail size={16} />
             </a>

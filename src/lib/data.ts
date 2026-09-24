@@ -16,7 +16,8 @@ export const profile = {
   email: 'amoateydarryl4@gmail.com',
   github: 'https://github.com/darrylamt',
   githubUser: 'darrylamt',
-  twitter: 'https://twitter.com/darrylamt',
+  x: 'https://x.com/darryl_amt',
+  xHandle: '@darryl_amt',
   avatar: 'https://avatars.githubusercontent.com/u/123960386?v=4',
 }
 

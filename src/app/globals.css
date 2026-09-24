@@ -93,6 +93,19 @@
     @apply btn border border-line bg-surface text-ink hover:bg-raised;
   }
 
+  .nav-link {
+    @apply relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute inset-x-3.5 bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out;
+  }
+
+  .nav-link:hover::after {
+    @apply scale-x-100;
+  }
+
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-pill border border-line bg-surface px-3 py-1.5 text-[13px] font-medium text-muted transition-colors hover:border-ink/25 hover:text-ink;
   }

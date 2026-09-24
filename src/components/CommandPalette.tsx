@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { profile, projects } from '@/lib/data'
 import { useTheme } from './ThemeToggle'
+import XIcon from './XIcon'
 
 type Item = {
   id: string
@@ -120,6 +121,14 @@ export default function CommandPalette() {
         keywords: 'contact hire work together',
         icon: <Mail size={15} />,
         run: openExternal(`mailto:${profile.email}`),
+      },
+      {
+        id: 'x',
+        label: `Open X profile (${profile.xHandle})`,
+        group: 'Actions',
+        keywords: 'twitter social follow',
+        icon: <XIcon size={13} />,
+        run: openExternal(profile.x),
       },
       {
         id: 'github',

@@ -42,7 +42,7 @@ export default function SiteHeader() {
           className="group inline-flex items-center gap-2.5"
           aria-label="Darryl Amoatey, home"
         >
-          <span className="grid size-8 place-items-center rounded-xl bg-ink font-display text-[13px] font-extrabold text-canvas">
+          <span className="grid size-8 place-items-center rounded-xl bg-ink font-display text-[13px] font-extrabold text-canvas transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
             da
           </span>
           <span className="hidden font-display text-[15px] font-bold tracking-tight sm:block">
@@ -55,7 +55,7 @@ export default function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-pill px-3.5 py-2 text-[14px] font-medium text-muted transition-colors hover:bg-raised hover:text-ink"
+              className="nav-link rounded-pill px-3.5 py-2 text-[14px] font-medium text-muted transition-colors hover:text-ink"
             >
               {link.label}
             </Link>

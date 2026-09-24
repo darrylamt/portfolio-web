@@ -36,6 +36,7 @@ export default function ProjectCover({
           {project.cover.mark}
         </span>
       </div>
+      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/45 to-transparent" />
       <p className="absolute bottom-3.5 left-4 font-mono text-[11px] uppercase tracking-[0.14em] text-white/80">
         {project.category} · {project.year}

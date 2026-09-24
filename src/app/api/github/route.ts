@@ -8,7 +8,7 @@ type GithubEvent = {
   type: string
   created_at: string
   repo: { name: string }
-  payload: { commits?: unknown[]; ref_type?: string; action?: string }
+  payload: { size?: number; commits?: unknown[]; ref_type?: string; action?: string }
 }
 
 export type ActivityItem = {
@@ -48,16 +48,19 @@ export async function GET() {
 
     const items: ActivityItem[] = events
       .filter((event) => verbs[event.type])
+      .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
       .slice(0, 8)
       .map((event) => {
-        const commits = event.payload?.commits?.length ?? 0
+        const commits = event.payload?.size ?? event.payload?.commits?.length ?? 0
         return {
           id: event.id,
           repo: event.repo.name.replace(`${profile.githubUser}/`, ''),
           verb: verbs[event.type],
           detail:
             event.type === 'PushEvent'
-              ? `${commits} commit${commits === 1 ? '' : 's'}`
+              ? commits > 0
+                ? `${commits} commit${commits === 1 ? '' : 's'}`
+                : ''
               : event.payload?.ref_type ?? event.payload?.action ?? '',
           at: event.created_at,
         }
