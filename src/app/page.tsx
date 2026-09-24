@@ -40,7 +40,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-16 border-t border-line pt-10">
-          <p className="eyebrow mb-6">Also shipped</p>
+          <p className="eyebrow mb-6">Also worked on</p>
           <ul className="grid overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-3">
             {rest.map((project, index) => (
               <li
@@ -54,14 +54,19 @@ export default function HomePage() {
                   className="group flex items-center justify-between gap-4 p-5 transition-colors hover:bg-raised"
                 >
                   <span className="min-w-0">
-                    <span className="block text-[15px] font-semibold">{project.name}</span>
-                    <span className="mt-0.5 block truncate text-[13px] text-muted">
+                    <span className="flex items-center gap-2">
+                      <span className="text-[15px] font-semibold">{project.name}</span>
+                      <span className="rounded-pill border border-line px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.08em] text-faint">
+                        {project.contributed ? 'Contributed' : 'Built'}
+                      </span>
+                    </span>
+                    <span className="mt-1 block truncate text-[13px] text-muted">
                       {project.tagline}
                     </span>
                   </span>
                   <ArrowUpRight
                     size={16}
-                    className="shrink-0 text-faint transition-colors group-hover:text-ink"
+                    className="shrink-0 text-faint transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
                   />
                 </Link>
               </li>
